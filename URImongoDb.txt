@@ -1,0 +1,4 @@
+mongodb+srv://bancalarisantiago:<password>@cluster0.cpbqd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
+mongodb+srv://bancalarisantiago:<elchachi66>@cluster0.cpbqd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
