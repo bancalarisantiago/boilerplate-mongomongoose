@@ -14,25 +14,63 @@ const personSchema = new Schema({
 const Person = mongoose.model("Person", personSchema);
 
 
+const createAndSavePerson = async (done) => {
 
-const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+     const newPerson = await new Person({
+        name: "Jules",
+        age: 22,
+        favoriteFoods: ["Fries", "Burgers", "Noodles"]
+      })
+      
+    newPerson.save(function(err,data) {
+      if(err) return console.error(err);
+      console.log(data)
+      done(null, data)
+    })
+    
 };
+
+const arrayOfPeople = [{
+  name: "Jules",
+  age: 22,
+  favoriteFoods: ["Fries", "Burgers", "Noodles"]
+},{
+  name: "Juan",
+  age: 25,
+  favoriteFoods: ["eggs", "bread", "ice-cream"]
+},
+{
+  name: "Luk",
+  age: 35,
+  favoriteFoods: ["meat", "chickenwings", "fruits"]
+}];
+
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+
+     Person.create(arrayOfPeople, function (err, people) {
+    if (err) return console.log(err);
+    done(null, people);
+  });
+  
 };
 
-const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+const findPeopleByName = async (personName, done) => {
+
+  const people = await Person.find({name: personName})
+
+  done(null, people)
 };
 
-const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+const findOneByFood = async(food, done) => {
+  const people = await Person.findOne({favoriteFoods: food})
+
+  done(null, people)
 };
 
-const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+const findPersonById = async (personId, done) => {
+  const person = await Person.findById(personId);
+  done(null,person);
 };
 
 const findEditThenSave = (personId, done) => {
